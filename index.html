@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footwear Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html { font-family: Arial, sans-serif; width: 100%; overflow-x: hidden; }
+        .header {
+            background-color: #133;
+            background-image: url("image.png");
+            background-size: cover;
+            width: 100%;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background-color: #133;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 12px;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            background-color: #146;
+            border-radius: 5px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .icons a i {
+            font-size: 22px;
+            color: white;
+        }
+        .view-more {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
+        .section {
+            width: 100%;
+            height: 80vh;
+            padding: 60px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+        }
+        #hh {background: url('home.png')no-repeat center/cover;}
+        #casual { background: url('https://s.alicdn.com/@sc04/kf/Hbeec80a95d9941a899493fd47137df78S.jpg') no-repeat center/cover; }
+        #office { background: url('https://images.meesho.com/images/products/441226418/l6mba_512.webp') no-repeat center/cover; }
+        #school { background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXA9PewQKZ045Hk4uLsVr5eTqiGlhtQLj0oA&s') no-repeat center/cover; }
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+        .footer {
+            background-color: #133;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .contact-form {
+            background: #f4f4f4;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #133;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-section { display: none; padding: 60px; text-align: center; background: white; min-height: 100vh; }
+        .product-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .product { background: #f4f4f4; padding: 20px; text-align: center; border-radius: 8px; }
+        .product img { width: 150px; height: 150px; border-radius: 5px; }
+        .add-to-cart { background: green; color: white; padding: 5px; cursor: pointer; margin-top: 10px; }
+        
+        .cart { position: fixed; top: 50px; right: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); display: none; }
+        .cart ul { list-style: none; padding: 0; }
+        .cart ul li { margin: 10px 0; }
+        .cart .close-cart { background: red; color: white; padding: 5px; cursor: pointer; border: none; margin-top: 10px; }
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #133;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 12px;
+                width: 100%;
+            }
+            .home {
+                height: 40vh;
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 30px;
+            }
+
+            .view-more {
+                font-size: 18px;
+            }
+
+            .arrow {
+                font-size: 20px;
+            }
+
+            .product-box {
+                width: 80%;
+                padding: 15px;
+            }
+
+            .cart-box {
+                width: 80%;
+                padding: 15px;
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Online Footwear Store</h1>
+    </div>
+    
+    <div class="navbar">
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    
+        <div class="nav-links">
+            <a onclick="hideProducts()">Home</a>
+            <a onclick="showProducts('Casual')">Casual</a>
+            <a onclick="showProducts('Office')">Office</a>
+            <a onclick="showProducts('School')">School/College</a>
+        </div>
+    
+        <div class="icons">
+            <a href="#login"><i class="fa-solid fa-user"></i></a>
+            <a onclick="toggleCart()" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+    <div id="home" class="home">
+        <section id="hh" class="section">
+            <h1>Welcome to Online Footwear Store</h1>
+        </section>
+    
+        <section id="casual" class="section">
+            <h2>Casual Wear</h2>
+            <p>Comfortable and stylish shoes for your everyday look.</p>
+            <div class="arrow" onclick="showProducts('Casual')">
+                <p>View latest collection</p>
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+        </section>
+    
+        <section id="office" class="section">
+            <h2>Office Wear</h2>
+            <p>Elegant and professional footwear for the workplace.</p>
+            <div class="arrow" onclick="showProducts('Office')">
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+        </section>
+    
+        <section id="school" class="section">
+            <h2>School/College Wear</h2>
+            <p>Durable and stylish shoes for students.</p>
+            <div class="arrow" onclick="showProducts('School')">
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+        </section>
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    
+        
+    </div>
+    <div id="product-section" class="product-section">
+        <button class="back-button" onclick="hideProducts()">Go to home</button>
+        <h2 id="product-title"></h2>
+        <div class="product-container" id="product-list"></div>
+    </div> 
+    <div class="footer">
+        <p>&copy; 2025 Online Footwear Store. All rights reserved.</p>
+    </div>
+
+    <div id="cart" class="cart">
+        <h3>Shopping Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: <span id="cart-total">$0.00</span></p>
+        <button class="order-btn" onclick="placeOrder()">Place Order</button>
+        <button class="close-cart" onclick="toggleCart()">Close</button>
+    </div>
+
+<script>
+    let cart = [];
+    const products = {
+    'Casual': [
+        { name: 'Sneakers', price: 40, image: 'https://redtape.com/cdn/shop/products/8-800x800_22c88bd9-f9c2-4c61-ab55-71edce92bf57.jpg?v=1741350727' },
+        { name: 'Running Shoes', price: 50, image: 'https://www.asics.co.in/media/catalog/product/1/0/1011b891_400_sr_rt_glb-base.jpg?optimize=high&bg-color=255%2C255%2C255&fit=cover&height=375&width=500&auto=webp&format=pjpg' },
+        { name: 'Slip-On Shoes', price: 35, image: 'https://images-cdn.ubuy.co.in/662624eb1471b17a80030c85-wonder-nation-kids-casual-slip-on.jpg' },
+        { name: 'Canvas Shoes', price: 45, image: 'https://m.media-amazon.com/images/I/71BJbjZ73BL._AC_UY1000_.jpg' }
+    ],
+    'Office': [
+        { name: 'Formal Shoes', price: 60, image: 'https://www.bxxyshoe.in/cdn/shop/files/MG_9106copy_131b8bd5-32b9-4268-89d3-62c21b5aa8d4.jpg?v=1710396724&width=1946' },
+        { name: 'Loafers', price: 55, image: 'https://egoss.in/cdn/shop/files/18.png?v=1710416501&width=2048' },
+        { name: 'Oxford Shoes', price: 70, image: 'https://sparrods.com/cdn/shop/collections/Men_s_oxford_wholecut_shoes_in_black_with_dress_trouser.jpg?v=1732360717' },
+        { name: 'Derby Shoes', price: 65, image: 'https://www.escaro.in/cdn/shop/files/1009221662818742-5_thump.jpg?v=1741716088' }
+    ],
+    'School': [
+        { name: 'School Shoes', price: 30, image: 'https://4.imimg.com/data4/UJ/PL/MY-11152049/school-shoes-500x500.jpg' },
+        { name: 'Sports Shoes', price: 45, image: 'https://images.meesho.com/images/products/81643593/d4wnx_512.webp' },
+        { name: 'Velcro School Shoes', price: 35, image: 'https://assets.ajio.com/medias/sys_master/root/20240626/vad9/667c10bf6f60443f31a8d004/-473Wx593H-466501308-black-MODEL.jpg' },
+        { name: 'White Shoes', price: 40, image: 'https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/23637924/2023/6/15/2eb0bd17-e774-4929-9c3b-41e3093d5b9c1686802893326RoadsterWomenLightweightCasualSneakers1.jpg' }
+    ]
+};
+
+
+    function showProducts(category) {
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('product-title').innerText = category + ' Collection';
+        let productList = document.getElementById('product-list');
+        productList.innerHTML = '';
+        products[category].forEach(item => {
+            productList.innerHTML += `
+                <div class='product'>
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name} - $${item.price}</p>
+                    <button class='add-to-cart' onclick='addToCart(${JSON.stringify(item)})'>Add to Cart</button>
+                </div>`;
+        });
+        document.getElementById('product-section').style.display = 'block';
+    }
+
+    function hideProducts() {
+            document.getElementById('product-section').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+            scrollToSection('home');
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+    function addToCart(item) {
+        cart.push(item);
+        document.getElementById('cart-count').innerText = cart.length;
+        updateCart();
+    }
+
+    function toggleCart() {
+        let cartDiv = document.getElementById('cart');
+        cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        const cartTotal = document.getElementById("cart-total");
+        cartItems.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            cartItems.appendChild(li);
+            total += item.price;
+        });
+
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    
+
+    function placeOrder() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+        alert("Your order has been placed!");
+        cart = [];
+        updateCart();
+    }
+
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+    function toggleMenu() {
+            let nav = document.querySelector(".nav-links");
+            nav.classList.toggle("active");
+        }
+
+</script>
+</body>
+</html>
